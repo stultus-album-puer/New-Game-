@@ -57,7 +57,7 @@
         
         <p2 id="cursors"></p2>
         
-        <script id="datatable">
+        <script>
             var score = 0;
             var clicks = 0;
             var increment = 1;
@@ -82,7 +82,6 @@
             var jake2 = 0;
             var keys = [];
             
-            var datatable = document.getElementById("datatable").innerHTML;
             
             //Accolade, possibly?
             
@@ -248,43 +247,6 @@
               increment = increment * 3;
                    }
               }
-              
-              var canvas = document.createElement("canvas");
-              canvas.width = 2250;
-              canvas.height = 1000;
-              document.body.appendChild(canvas);
-              var ctx = canvas.getContext("2d");
-              var player = {x: canvas.width / 2, y: canvas.height / 2, speed: 10};
-              var keys = [];
-
-            function update() {
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-              ctx.beginPath();
-              ctx.fillStyle = "purple";
-              ctx.fillRect(player.x, player.y, 50, 50);
-              ctx.strokeRect(0, 0, canvas.width, canvas.height);
-              
-              if (keys[37])
-                player.x -= player.speed;
-              if (keys[38])
-                player.y -= player.speed;
-              if (keys[39])
-                player.x += player.speed;
-              if (keys[40])
-                player.y += player.speed;
-  
-              requestAnimationFrame(update);
-            }
-
-            update();
-
-            document.onkeydown = function(e) {
-              keys[e.keyCode] = true;
-            }
-            document.onkeyup = function(e) {
-              keys[e.keyCode] = false;
-            }
             
             function save() {
                 localStorage.setItem('clicks', 'score', 'bakery', 'bakeryCost', 'cursorCost', 'joshCost', 'jakeCost', 'cursors', 'josh', 'jake', 'upgrades', 'increment', 'jake2', 'josh2', 'cursor2', 'scorePerSecond')
