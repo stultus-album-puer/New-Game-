@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html onMouseOver="addToScore()" class="centerImage" style="background-image: url('https://c.tenor.com/438H6u87JfsAAAAC/sky-clouds.gif');">
+    <head>
+      <style type="text/css">
+    .centerImage
+    {
+    text-align:center;
+    display:block;
+    }
+    .rainbow-lr {
+    background: linear-gradient(to right, red, orange , yellow, green, cyan, blue, violet);
+    color:transparent;
+    background-clip: text;
+    }
+    .rainbow-td {
+    background: linear-gradient(to bottom, red, orange , yellow, green, cyan, blue, violet);
+    color:transparent;
+    background-clip: text;
+    }
+    </style>
+      <meta charset="UTF-8">
+        <title>Dumb weird Game</title>
+    </head>
+    
+    <body>
+      
+      <h1> Some Dumb Clicker </h1>
+      
+      <span id="fix()">
+      
+        <p style="color:blue" onClick="hack()">Money: $<span id="score">0</span></p>
+        
+        <p>Clicks: <span id="clicks">0</span></p>
+        
+        <p>Money Per Second: $<span id="scorePerSecond">0</span></p>
+        
+        <img src="https://o.remove.bg/downloads/1915e663-40bd-488b-a585-a1c7e72192de/download-removebg-preview.png" height="256" width="256" onclick="addToScore(1), addToClicks(1)">
+        <br>
+        <p>Buyables and Upgrades</p>
+        <button onclick="buyCursor()">Cursors [$<a id="cursorCost">45</a>] - <a id="cursors">0</a></button>
+        <br>
+        <button onclick="buyJosh()">Josh's [$<span id="joshCost">60</span>] - <span id="josh">0</span></button>
+        <br>
+        <button onclick="buyJake()">Jake's [$<span id="jakeCost">1000</span>] - <span id="jake">0</span></button>
+        <br>
+        <button onclick="upgradeClick()">Click Upgrades [$<span id="upgradeCost">30</span>] - <span id="upgrades">0</span></button>
+        <br>
+        <button onclick="buyCursor2()">Cursor (x2 speed): [<span id="cursor2Cost">20</span> - Cursors] - <span id="cursor2">0</span></button>
+        <br>
+        <button onclick="buyBakery()">Bakeries [<span id="bakeryCost">45</span> Cursors] - <span id="bakery">0</span></button>
+        <br>
+        <p> Options </p>
+        <button onclick="document.cookie='clicks, score, bakery, bakeryCost, cursorCost, joshCost, jakeCost, cursors, josh, jake, upgrades, increment, jake2, josh2, cursor2, scorePerSecond'">Save</button>
+        <button onclick="loadGame()">Load</button>
+        <button onclick="prestige()">Prestige: $<span id="prestigeCost">1000000000</span></button>
+        
+        <p2 id="cursors"></p2>
+        
+        <script id="datatable">
+            var score = 0;
+            var clicks = 0;
+            var increment = 1;
+            var scorePerSecond = 0;
+            
+            var bakeryCost = 45;
+            var upgradeCost = 30;
+            var cursorCost = 45;
+            var joshCost = 60;
+            var jakeCost = 1000;
+            var cursor2Cost = 20;
+            var prestigeCost = 1000000000;
+            
+            var bakery = 0;
+            var cursors = 0;
+            var josh = 0;
+            var jake = 0;
+            var upgrades = 0;
+            
+            var cursor2 = 0;
+            var josh2 = 0;
+            var jake2 = 0;
+            var keys = [];
+            
+            var datatable = document.getElementById("datatable").innerHTML;
+            
+            //Accolade, possibly?
+            
+              if (cursors >= 10) {
+                 increment = increment * 2;
+              }
+            
+            // Function line for buying cursors
+            
+            function buyCursor(){
+                if (score >= cursorCost) {
+                    score = score - cursorCost;
+                    cursors = cursors + 1;
+                    cursorCost = cursorCost + 5;
+                    scorePerSecond = scorePerSecond + 1;
+                    
+                    document.getElementById("score").innerHTML = score;
+                    document.getElementById("cursorCost").innerHTML = cursorCost;
+                    document.getElementById("cursors").innerHTML = cursors;
+                    document.getElementById("scorePerSecond").innerHTML = scorePerSecond;
+                }
+            }
+            
+            function addToScore (amount) {
+                score = score + increment;
+                document.getElementById("score").innerHTML = score;
+            }
+            
+            setInterval(function() {
+                score = score + cursors;
+                document.getElementById("score").innerHTML = score;
+            }, 1500); // 1500ms = 1.5 seconds
+            
+            // New function line for "Josh"
+              
+            function buyJosh(){
+                if (score >= joshCost) {
+                    score = score - joshCost;
+                    josh = josh + 1;
+                    joshCost = (joshCost + 8) * 2;
+                    scorePerSecond = scorePerSecond + 1.2
+                    
+                    document.getElementById("score").innerHTML = score;
+                    document.getElementById("joshCost").innerHTML = joshCost;
+                    document.getElementById("josh").innerHTML = josh;
+                    document.getElementById("scorePerSecond").innerHTML = scorePerSecond;
+                }
+            }
+            
+            setInterval(function() {
+                score = score + josh;
+                document.getElementById("score").innerHTML = score;
+            }, 800);
+            // 800ms = .8 seconds
+            
+            // New function line for "Jake"
+              
+            function buyJake(){
+                if (score >= jakeCost) {
+                    score = score - jakeCost;
+                    jake = jake + 1;
+                    jakeCost = jakeCost * 2.5;
+                    scorePerSecond = scorePerSecond + 2;
+                    
+                    document.getElementById("score").innerHTML = score;
+                    document.getElementById("jakeCost").innerHTML = jakeCost;
+                    document.getElementById("jake").innerHTML = jake;
+                    document.getElementById("scorePerSecond").innerHTML = scorePerSecond;
+                }
+            }
+            setInterval(function() {
+                score = score + jake;
+                document.getElementById("score").innerHTML = score;
+            }, 500);
+            
+            // 500ms = .5 seconds
+            
+            function upgradeClick() {
+              if (score >= upgradeCost) {
+                score = score - upgradeCost;
+                increment = increment + 4;
+                upgrades = upgrades + 1;
+                upgradeCost = upgradeCost * 2
+                
+                document.getElementById("score").innerHTML = score;
+                document.getElementById("upgradeCost").innerHTML = upgradeCost;
+                document.getElementById("upgrades").innerHTML = upgrades;
+              }
+            }
+            
+            // I dont know if i should end it here :(
+          
+            // Apparently not. After having someone play, i know what to do...
+            
+            function addToClicks (amount) {
+                clicks = clicks + 1;
+                
+                document.getElementById("clicks").innerHTML = clicks;
+            }
+            
+            function buyCursor2(){
+                if (cursors >= cursor2Cost) {
+                    cursors = cursors - cursor2Cost;
+                    cursor2 = cursor2 + 1;
+                    cursor2Cost = cursor2Cost + 10;
+                    cursorCost = 40;
+                    
+                    document.getElementById("cursor2Cost").innerHTML = cursor2Cost;
+                    document.getElementById("cursor2").innerHTML = cursor2;
+                }
+            }
+            
+            // Line for Cursor2 upgrade
+            
+            setInterval(function() {
+                score = score + cursor2;
+                
+                document.getElementById("score").innerHTML = score;
+                document.getElementById("cursor2").innerHTML = cursor2;
+            }, 200);
+            
+            // Function for bakery
+            
+            function buyBakery(){
+              if (cursors >= bakeryCost) {
+                  cursors = cursors - bakeryCost;
+                  bakery = bakery + 1;
+                  bakeryCost = bakeryCost * 4;
+                  scorePerSecond = scorePerSecond + 3
+                
+                document.getElementById("scorePerSecond").innerHTML = scorePerSecond;
+                document.getElementById("bakeryCost").innerHTML = bakeryCost;
+                
+              }
+            }
+            
+            // Line For Bakery Function
+            
+            setInterval(function() {
+                cursors = cursors + bakery;
+                document.getElementById("bakery").innerHTML = bakery;
+                
+            }, 12000);
+            // 12000 ms = 12 seconds
+            
+            // Prestige Function
+            
+            function prestige(){
+              if (score >= 1000000000) {
+              prestigeCost = prestigeCost + 1000000000;
+              cursors = 0;
+              score = 10;
+              josh = 0;
+              cursor2 = 0;
+              upgrades = 0;
+              cursor2Cost = 20;
+              jakeCost = 1000;
+              joshCost = 60;
+              cursorCost = 45;
+              upgradeCost = 30;
+              clicks = 0;
+              jake = 0;
+              increment = increment * 3;
+                   }
+              }
+              
+              var canvas = document.createElement("canvas");
+              canvas.width = 2250;
+              canvas.height = 1000;
+              document.body.appendChild(canvas);
+              var ctx = canvas.getContext("2d");
+              var player = {x: canvas.width / 2, y: canvas.height / 2, speed: 10};
+              var keys = [];
+
+            function update() {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+              ctx.beginPath();
+              ctx.fillStyle = "purple";
+              ctx.fillRect(player.x, player.y, 50, 50);
+              ctx.strokeRect(0, 0, canvas.width, canvas.height);
+              
+              if (keys[37])
+                player.x -= player.speed;
+              if (keys[38])
+                player.y -= player.speed;
+              if (keys[39])
+                player.x += player.speed;
+              if (keys[40])
+                player.y += player.speed;
+  
+              requestAnimationFrame(update);
+            }
+
+            update();
+
+            document.onkeydown = function(e) {
+              keys[e.keyCode] = true;
+            }
+            document.onkeyup = function(e) {
+              keys[e.keyCode] = false;
+            }
+            
+            function save() {
+                localStorage.setItem('datatable', datatable)
+              }
+              
+              function loadGame() {
+                localStorage.getItem('datatable', datatable)
+              }
+              
+              document.cookie
+            </script>
+        </span>
+    </body>
+</html>
