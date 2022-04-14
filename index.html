@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html onMouseOver="addToScore()" class="centerImage" style="background-image: url('https://c.tenor.com/438H6u87JfsAAAAC/sky-clouds.gif');">
+<html user-scalable=no onMouseOver="addToScore()" class="centerImage" style="background-image: url('https://c.tenor.com/438H6u87JfsAAAAC/sky-clouds.gif');">
     <head>
       <style type="text/css">
     .centerImage
@@ -54,10 +54,11 @@
         <button onclick="save()">Save</button>
         <button onclick="loadGame()">Load</button>
         <button onclick="prestige()">Prestige: $<span id="prestigeCost">1000000000</span></button>
+        <button id="minigame">Minigame</button>
         
         <p2 id="cursors"></p2>
         
-        <script>
+        <script id="datatable">
             var score = 0;
             var clicks = 0;
             var increment = 1;
@@ -82,6 +83,7 @@
             var jake2 = 0;
             var keys = [];
             
+            var datatable = document.getElementById("datatable").innerHTML;
             
             //Accolade, possibly?
             
@@ -247,15 +249,20 @@
               increment = increment * 3;
                    }
               }
+              
+            document.onkeydown = function(e) {
+              keys[e.keyCode] = true;
+            }
+            document.onkeyup = function(e) {
+              keys[e.keyCode] = false;
+            }
             
             function save() {
-                parseInt(localStorage.setItem('clicks', clicks), 10);
-                document.getElementById("clicks").innerHTML = clicks;
+                localStorage.setItem('clicks', 'clicks');
               }
               
               function loadGame() {
-                parseInt(localStorage.getItem('clicks', clicks), 10);
-                document.getElementById("clicks").innerHTML = clicks;
+                localStorage.getItem('clicks', 'clicks');
               }
             </script>
         </span>
