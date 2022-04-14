@@ -249,11 +249,13 @@
               }
             
             function save() {
-                localStorage.setItem('clicks', 'score', 'bakery', 'bakeryCost', 'cursorCost', 'joshCost', 'jakeCost', 'cursors', 'josh', 'jake', 'upgrades', 'increment', 'jake2', 'josh2', 'cursor2', 'scorePerSecond')
+                localStorage.setItem('clicks', clicks)
+                document.getElementById("clicks").innerHTML = clicks;
               }
               
               function loadGame() {
-                localStorage.getItem('clicks', 'score', 'bakery', 'bakeryCost', 'cursorCost', 'joshCost', 'jakeCost', 'cursors', 'josh', 'jake', 'upgrades', 'increment', 'jake2', 'josh2', 'cursor2', 'scorePerSecond')
+                localStorage.getItem('clicks', clicks)
+                document.getElementById("clicks").innerHTML = clicks;
               }
             </script>
         </span>
