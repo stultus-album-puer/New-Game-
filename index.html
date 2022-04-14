@@ -249,12 +249,12 @@
               }
             
             function save() {
-                localStorage.setItem('clicks', clicks)
+                parseInt(localStorage.setItem('clicks', clicks), 10);
                 document.getElementById("clicks").innerHTML = clicks;
               }
               
               function loadGame() {
-                localStorage.getItem('clicks', clicks)
+                parseInt(localStorage.getItem('clicks', clicks), 10);
                 document.getElementById("clicks").innerHTML = clicks;
               }
             </script>
