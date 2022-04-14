@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 
-<html user-scalable=no onMouseOver="addToScore()" class="centerImage" style="background-image: url('https://c.tenor.com/438H6u87JfsAAAAC/sky-clouds.gif');">
+<html user-scalable=no onMouseOver="addToScore()" class="centerImage" style="disable-dbl-tap-zoom, background-image: url('https://c.tenor.com/438H6u87JfsAAAAC/sky-clouds.gif');">
     <head>
       <style type="text/css">
+    .disable-dbl-tap-zoom
+    {
+    touch-action: manipulation;
+    }
     .centerImage
     {
     text-align:center;
